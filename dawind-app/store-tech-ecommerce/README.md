@@ -36,7 +36,9 @@
 
 ### Admin Variables
 
-- Description: `NEXT_PUBLIC_URL`
+- Mongo URL: `MONGODB_URI`
+- Google ID: `GOOGLE_ID`
+- Google Secret: `GOOGLE_SECRET`
 
 ### Web Variables
 
