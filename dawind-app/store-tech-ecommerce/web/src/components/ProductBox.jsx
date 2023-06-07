@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import { styled } from "styled-components";
+import { toast } from "react-toastify";
 
 import { CartContext } from "@/store/CartContext";
 import Button from "./Button";
@@ -44,6 +45,20 @@ const Price = styled.span`
 export default function ProductBox({ _id, title, description, images, price }) {
   const { addProduct } = useContext(CartContext);
 
+  function addProductToCart(productId) {
+    addProduct(productId);
+    toast.success("Product Add to Cart", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
+
   return (
     <div>
       <WhiteBoxLink href={`/products/${_id}`}>
@@ -57,7 +72,7 @@ export default function ProductBox({ _id, title, description, images, price }) {
         <TitleLink href={`/products/${_id}`}>{title}</TitleLink>
         <PriceRow>
           <Price>${price}</Price>
-          <Button primary={1} onClick={() => addProduct(_id)}>
+          <Button primary={1} onClick={() => addProductToCart(_id)}>
             <CartIcon />
           </Button>
         </PriceRow>
