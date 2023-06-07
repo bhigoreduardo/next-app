@@ -25,6 +25,7 @@ function FormProduct({
     existedCategoryProperties || {}
   );
   const [categoryPropertiesData, setCategoryPropertiesData] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
 
   const clearFields = () => {
     setTitle("");
@@ -65,8 +66,22 @@ function FormProduct({
       return props;
     });
   };
+  async function uploadImages(ev) {
+    setIsUploading(true);
+    const reader = new FileReader();
+    reader.readAsDataURL(ev.target.files[0]);
+    reader.onload = async () => {
+      const { data } = await axios.post("/api/upload", {
+        name: ev.target.files[0].name,
+        data: reader.result,
+      });
+      setImages((prevState) => [...prevState, data]);
+    };
+    setIsUploading(false);
+  }
   const saveproduct = async (ev) => {
     ev.preventDefault();
+
     const data = {
       title,
       category,
@@ -142,7 +157,52 @@ function FormProduct({
 
       <div className="bg-zinc-200 p-2">
         <label>Photos</label>
-        {!images?.length && <div>No photos in this product</div>}
+        <div className="flex flex-wrap items-center gap-2">
+          <label className="w-24 h-24 bg-gray-300 flex items-center justify-center gap-1 rounded-lg cursor-pointer text-sm text-gray-500 font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+              />
+            </svg>
+            Upload
+            <input
+              type="file"
+              onChange={uploadImages}
+              // onChange={(ev) => {
+              //   setImages((prevState) => [...prevState, ev.target.files]);
+              // }}
+              className="hidden"
+            />
+          </label>
+          {isUploading && <p>Uploading...</p>}
+          {!images?.length ? (
+            <p>No photos in this product</p>
+          ) : (
+            images.map((item, i) => (
+              <div
+                key={i}
+                className="w-24 h-24 bg-gray-300 flex items-center justify-center rounded-lg overflow-hidden"
+              >
+                <img
+                  // src={window.URL.createObjectURL(
+                  //   new Blob(item, { type: "application/zip" })
+                  // )}
+                  src={item}
+                  className="object-cover"
+                />
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
       <div className="bg-zinc-200 p-2">

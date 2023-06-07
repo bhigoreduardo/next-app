@@ -26,6 +26,7 @@ export default async function handler(req, res) {
       properties,
       categoryProperties,
     } = req.body;
+
     const product = await Product.create({
       title,
       description,
