@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { styled } from "styled-components";
 
 import Center from "./Center";
 import CloseIcon from "@/components/CloseIcon";
 import BarsIcon from "@/components/BarsIcon";
+import { CartContext } from "@/store/CartContext";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -28,7 +29,7 @@ const StyledNav = styled.nav`
 
   @media screen and (max-width: 768px) {
     ${(props) =>
-      props.mobileNavActive
+      props.$mobileNavActive
         ? `
       display: flex;
     `
@@ -70,6 +71,8 @@ const StyledBars = styled.button`
 `;
 
 function Header() {
+  const { cartProducts } = useContext(CartContext);
+
   const [mobileNavActive, setMobileNavActive] = useState(false);
 
   return (
@@ -78,12 +81,12 @@ function Header() {
         <Wrapper>
           <Logo href="/">Ecommerce</Logo>
 
-          <StyledNav mobileNavActive={mobileNavActive}>
+          <StyledNav $mobileNavActive={mobileNavActive}>
             <NavLink href="/">Home</NavLink>
             <NavLink href="/products">All Products</NavLink>
             <NavLink href="/categories">Categories</NavLink>
             <NavLink href="/account">Account</NavLink>
-            <NavLink href="/cart">Account</NavLink>
+            <NavLink href="/cart">Cart ({cartProducts?.length})</NavLink>
           </StyledNav>
 
           <StyledBars onClick={() => setMobileNavActive((prev) => !prev)}>

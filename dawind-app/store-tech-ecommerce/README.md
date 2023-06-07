@@ -16,6 +16,7 @@
 - NodeJs (`node --version`/`npm --version`)
 - Yarn (`npm install --global yarn`/`yarn --version`)
 - VS Code
+- Http Server: (`npm install -g http-server`/`http-server ./`)
 
 ## :fire: Run
 
