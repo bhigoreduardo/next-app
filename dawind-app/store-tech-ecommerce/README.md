@@ -1,5 +1,8 @@
 # :desktop_computer: Shoe Ecommerce Application
 
+<img src="./assets/cover.png" alt="Cover projeto" />
+<p align="center"><img src="./assets/cover.gif" alt="Cover projeto" /><p>
+
 ## :briefcase: Stacks
 
 ✅ JavaScript
@@ -56,8 +59,16 @@
 
 ### :scroll: Documentações
 
-- Axios: ``
-- TailwindCSS: ``
-- Mongo: ``
+- Next: `https://nextjs.org/`
+- Next Auth: `https://next-auth.js.org/`
+- Sortable: `https://www.npmjs.com/package/react-sortablejs`
+- Spinners: `https://www.npmjs.com/package/react-spinners`
+- Sweet Alert: `https://www.npmjs.com/package/sweetalert2`
+- Toastify: `https://www.npmjs.com/package/react-toastify`
+- Stripe: `https://stripe.com`
+- Axios: `https://axios-http.com/`
+- Mongo: `https://www.mongodb.com/`
+- TailwindCSS: `https://tailwindcss.com/`
+- Styled Components: `https://styled-components.com/`
 
 <details>
