@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { CartContext } from "@/store/CartContext";
 import Center from "@/widgets/Center";
@@ -108,6 +109,16 @@ export default function Cart() {
     if (window?.location.href.includes("success")) {
       setIsSuccess(true);
       clearCart();
+      toast.success("Order Registered", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }, []);
 

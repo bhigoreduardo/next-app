@@ -1,5 +1,8 @@
 # :desktop_computer: Shoe Ecommerce Application
 
+<img src="./assets/cover.png" alt="Cover projeto" />
+<p align="center"><img src="./assets/cover.gif" alt="Cover projeto" /><p>
+
 ## :briefcase: Stacks
 
 ✅ JavaScript
@@ -30,8 +33,8 @@
 
 ## :ok_man: Dependencies
 
-- Client Dependencies: `yarn add`
-- Api Dependencies: `yarn add`
+- Admin Dependencies: `yarn add @next-auth/mongodb-adapter axios mongodb mongoose next-auth react-sortablejs react-spinners react-sweetalert2 react-toastify sortablejs`
+- Web Dependencies: `yarn add axios mongoose react-toastify stripe styled-components`
 
 ## :triangular_flag_on_post: Environment Variables
 
@@ -43,7 +46,11 @@
 
 ### Web Variables
 
-- Description: `NEXT_PUBLIC_URL`
+- Mongo URL: `MONGODB_URI`
+- Api Url (http-server): `NEXT_PUBLIC_API_URL`
+- Next Url: `NEXT_PUBLIC_URL`
+- Stripe Key: `STRIPE_PK`
+- Stripe Secret: `STRIPE_SK`
 
 ## :page_facing_up: Docs
 
@@ -52,8 +59,16 @@
 
 ### :scroll: Documentações
 
-- Axios: ``
-- TailwindCSS: ``
-- Mongo: ``
+- Next: `https://nextjs.org/`
+- Next Auth: `https://next-auth.js.org/`
+- Sortable: `https://www.npmjs.com/package/react-sortablejs`
+- Spinners: `https://www.npmjs.com/package/react-spinners`
+- Sweet Alert: `https://www.npmjs.com/package/sweetalert2`
+- Toastify: `https://www.npmjs.com/package/react-toastify`
+- Stripe: `https://stripe.com`
+- Axios: `https://axios-http.com/`
+- Mongo: `https://www.mongodb.com/`
+- TailwindCSS: `https://tailwindcss.com/`
+- Styled Components: `https://styled-components.com/`
 
 <details>
