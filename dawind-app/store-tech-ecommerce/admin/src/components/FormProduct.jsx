@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ReactSortable } from "react-sortablejs";
+import { toast } from "react-toastify";
+
+import Spinner from "./Spinner";
 
 function FormProduct({
   setProductForm,
@@ -25,7 +29,8 @@ function FormProduct({
     existedCategoryProperties || {}
   );
   const [categoryPropertiesData, setCategoryPropertiesData] = useState([]);
-  const [isUploading, setIsUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const clearFields = () => {
     setTitle("");
@@ -67,7 +72,7 @@ function FormProduct({
     });
   };
   async function uploadImages(ev) {
-    setIsUploading(true);
+    setUploading(true);
     const reader = new FileReader();
     reader.readAsDataURL(ev.target.files[0]);
     reader.onload = async () => {
@@ -76,11 +81,25 @@ function FormProduct({
         data: reader.result,
       });
       setImages((prevState) => [...prevState, data]);
+      toast.success("Uploaded Successful", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     };
-    setIsUploading(false);
+    setUploading(false);
   }
+  const updateImageOrder = (images) => {
+    setImages(images);
+  };
   const saveproduct = async (ev) => {
     ev.preventDefault();
+    setLoading(true);
 
     const data = {
       title,
@@ -102,6 +121,17 @@ function FormProduct({
       await axios.put("/api/products", data);
     }
 
+    setLoading(false);
+    toast.success("Save Product Successful", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     clearFields();
     getProducts();
   };
@@ -126,7 +156,12 @@ function FormProduct({
   }, [category]);
 
   return (
-    <form onSubmit={saveproduct} className="flex flex-col gap-2">
+    <form onSubmit={saveproduct} className="flex flex-col gap-2 relative">
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       <div className="bg-zinc-200 p-2">
         <label>
           {existedTitle ? `Edit Product ${existedTitle}` : "New product name"}
@@ -183,24 +218,31 @@ function FormProduct({
               className="hidden"
             />
           </label>
-          {isUploading && <p>Uploading...</p>}
+          {uploading && <Spinner />}
           {!images?.length ? (
             <p>No photos in this product</p>
           ) : (
-            images.map((item, i) => (
-              <div
-                key={i}
-                className="w-24 h-24 bg-gray-300 flex items-center justify-center rounded-lg overflow-hidden"
-              >
-                <img
-                  // src={window.URL.createObjectURL(
-                  //   new Blob(item, { type: "application/zip" })
-                  // )}
-                  src={item}
-                  className="object-cover"
-                />
-              </div>
-            ))
+            <ReactSortable
+              list={images}
+              setList={updateImageOrder}
+              className="flex flex-wrap gap-2"
+            >
+              {!!images?.length &&
+                images.map((item, i) => (
+                  <div
+                    key={i}
+                    className="w-24 h-24 bg-gray-300 flex items-center justify-center rounded-lg overflow-hidden"
+                  >
+                    <img
+                      // src={window.URL.createObjectURL(
+                      //   new Blob(item, { type: "application/zip" })
+                      // )}
+                      src={item}
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+            </ReactSortable>
           )}
         </div>
       </div>

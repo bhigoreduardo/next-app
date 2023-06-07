@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { withSwal } from "react-sweetalert2";
+import { toast } from "react-toastify";
 
 import FormCategory from "@/components/FormCategory";
+import Spinner from "@/components/Spinner";
 
-export default function Categories() {
+function Categories({ swal }) {
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(null);
@@ -20,9 +23,36 @@ export default function Categories() {
     setCategoryForm(true);
   };
   const removeCategory = async (item) => {
-    const { _id } = item;
-    await axios.delete(`api/categories?id=${_id}`);
-    getCategories();
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: `You want delete the "${item.name}"`,
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        confirmButtonText: "Yes, Delete!",
+        confirmButtonColor: "#d55",
+        reverseButtons: true,
+      })
+      .then(async (res) => {
+        if (res.isConfirmed) {
+          setLoading(true);
+          const { _id } = item;
+          await axios.delete(`api/categories?id=${_id}`);
+
+          setLoading(false);
+          toast.success("Deleted Successful", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          getCategories();
+        }
+      });
   };
   const getCategories = async () => {
     setLoading(true);
@@ -62,7 +92,10 @@ export default function Categories() {
       )}
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <Spinner />
+          <span>Loading...</span>
+        </div>
       ) : categories?.length > 0 ? (
         <table className="basic mt-2">
           <thead>
@@ -131,3 +164,5 @@ export default function Categories() {
     </main>
   );
 }
+
+export default withSwal(({ swal }, ref) => <Categories swal={swal} />);

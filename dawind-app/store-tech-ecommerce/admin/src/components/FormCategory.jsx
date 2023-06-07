@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+
+import Spinner from "./Spinner";
 
 function FormCategory({
   setCategoryForm,
@@ -14,6 +17,7 @@ function FormCategory({
   const [name, setName] = useState(existedName || "");
   const [parent, setParent] = useState(existedParent?._id || "");
   const [properties, setProperties] = useState(existedProperties || []);
+  const [loading, setLoading] = useState(false);
 
   const clearFields = () => {
     setExistedCategory(null);
@@ -44,6 +48,8 @@ function FormCategory({
   };
   const saveCategory = async (ev) => {
     ev.preventDefault();
+    setLoading(true);
+
     const data = {
       name,
       parent,
@@ -60,12 +66,28 @@ function FormCategory({
       await axios.put("/api/categories", data);
     }
 
+    setLoading(false);
+    toast.success("Save Category Successful", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     clearFields();
     getCategories();
   };
 
   return (
-    <form onSubmit={saveCategory}>
+    <form onSubmit={saveCategory} className="relative">
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       <div className="bg-zinc-200 p-2">
         <label>
           {existedName ? `Edit Category ${existedName}` : "New Category name"}

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
+import { toast } from "react-toastify";
 
 import { mongooseConnect } from "@/libs/mongoose";
 import { Product } from "@/models/Product";
@@ -38,6 +39,20 @@ const PriceRow = styled.div`
 export default function ProductPage({ product }) {
   const { addProduct } = useContext(CartContext);
 
+  function addProductToCart(productId) {
+    addProduct(productId);
+    toast.success("Product Add to Cart", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
+
   return (
     <main>
       <Center>
@@ -52,7 +67,7 @@ export default function ProductPage({ product }) {
 
             <PriceRow>
               <span>${product.price}</span>
-              <Button primary={1} onClick={() => addProduct(product._id)}>
+              <Button primary={1} onClick={() => addProductToCart(product._id)}>
                 <CartIcon /> Add To Cart
               </Button>
             </PriceRow>

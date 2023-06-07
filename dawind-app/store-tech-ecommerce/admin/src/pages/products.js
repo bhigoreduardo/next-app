@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-
-// import { products } from "@/utils/data";
-import FormProduct from "@/components/FormProduct";
 import axios from "axios";
+import { withSwal } from "react-sweetalert2";
+import { toast } from "react-toastify";
 
-export default function Products() {
+import FormProduct from "@/components/FormProduct";
+import Spinner from "@/components/Spinner";
+
+function Products({ swal }) {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -22,9 +24,36 @@ export default function Products() {
     setProductForm(true);
   };
   const removeProduct = async (item) => {
-    const { _id } = item;
-    await axios.delete(`/api/products?id=${_id}`);
-    getProducts();
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: `You want delete the "${item.title}"`,
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        confirmButtonText: "Yes, Delete!",
+        confirmButtonColor: "#d55",
+        reverseButtons: true,
+      })
+      .then(async (res) => {
+        if (res.isConfirmed) {
+          setLoading(true);
+          const { _id } = item;
+          await axios.delete(`/api/products?id=${_id}`);
+
+          setLoading(false);
+          toast.success("Deleted Successful", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          getProducts();
+        }
+      });
   };
   const getProducts = async () => {
     setLoading(true);
@@ -69,7 +98,10 @@ export default function Products() {
       )}
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <Spinner />
+          <span>Loading...</span>
+        </div>
       ) : products?.length > 0 ? (
         <table className="basic mt-2">
           <thead>
@@ -138,3 +170,5 @@ export default function Products() {
     </main>
   );
 }
+
+export default withSwal(({ swal }, ref) => <Products swal={swal} />);

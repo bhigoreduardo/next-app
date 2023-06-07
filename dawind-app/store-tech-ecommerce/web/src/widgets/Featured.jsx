@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
+import { toast } from "react-toastify";
 
 import { CartContext } from "@/store/CartContext";
 import Center from "./Center";
@@ -59,6 +60,16 @@ function Featured({ product }) {
 
   function addFeaturedToCart() {
     addProduct(product._id);
+    toast.success("Product Add to Cart", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   }
 
   return (
