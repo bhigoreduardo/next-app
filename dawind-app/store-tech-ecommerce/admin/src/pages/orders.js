@@ -1,16 +1,31 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-import { orders } from "@/utils/data";
+import Spinner from "@/components/Spinner";
 
 export default function Orders() {
   const [loading, setLoading] = useState(false);
+  const [orders, setOrders] = useState([]);
+
+  const getOrders = async () => {
+    setLoading(true);
+    const { data } = await axios.get("/api/orders");
+    setOrders(data);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   return (
     <main>
       <h1>Orders</h1>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <Spinner />
+          <span>Loading...</span>
+        </div>
       ) : orders?.length > 0 ? (
         <table className="basic mt-2">
           <thead>
@@ -26,16 +41,32 @@ export default function Orders() {
               <tr key={item._id}>
                 <td>{new Date(item.createdAt).toLocaleString()}</td>
                 <td>
-                  {item.name} {item.email} <br />
-                  {item.city} {item.postalCode} {item.country} <br />
-                  {item.streetAddress}
+                  <b>Name:</b> {item.name} <br />
+                  <b>Email:</b> {item.email} <br />
+                  <b>City:</b> {item.city} <br />
+                  <b>ZIP Code:</b> {item.postalCode} <br />
+                  <b>Country:</b> {item.country} <br />
+                  <b>Address:</b> {item.streetAddress}
                 </td>
-                <td>
+                <td className="flex flex-col gap-2">
                   {item.line_items.map((value, key) => (
-                    <div key={key}>
-                      {value.title} x {value.quantity} units <br />
-                      {JSON.stringify(value.properties, null, 4)} <br />
-                      {JSON.stringify(value.categoryProperties, null, 4)}
+                    <div key={key} className="bg-zinc-200 p-2">
+                      <b>Title:</b> {value.title} <br />
+                      <b>Quantity:</b> {value.quantity} units <br />
+                      <b>Properties:</b> <br />
+                      {value?.properties?.map((v, k) => (
+                        <li key={k}>
+                          {v.name} = {v.values.join("|")}
+                          <br />
+                        </li>
+                      ))}
+                      <b>Category Properties:</b> <br />
+                      {value.categoryProperties &&
+                        Object.keys(value.categoryProperties).map((v, k) => (
+                          <li key={k}>
+                            {v} = {value.categoryProperties[v]}
+                          </li>
+                        ))}
                     </div>
                   ))}
                 </td>

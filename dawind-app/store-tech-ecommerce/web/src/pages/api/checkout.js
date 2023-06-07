@@ -16,18 +16,27 @@ export default async function handler(req, res) {
   const productsInfos = await Product.find({ _id: uniqueIds });
 
   let line_items = [];
+  let payload = [];
   for (const productId of uniqueIds) {
     const productInfo = productsInfos.find(
       (item) => item._id.toString() === productId
     );
     const quantity = products.filter((item) => item === productId)?.length || 0;
     if (quantity > 0 && productInfo) {
-      line_items.push({
+      payload.push({
         productId,
         title: productInfo.title,
         price: productInfo.price,
         properties: productInfo.properties,
         categoryProperties: productInfo.categoryProperties,
+        quantity,
+        price_data: {
+          currency: "USD",
+          product_data: { name: productInfo.title },
+          unit_amount: productInfo.price * 100,
+        },
+      });
+      line_items.push({
         quantity,
         price_data: {
           currency: "USD",
@@ -46,7 +55,7 @@ export default async function handler(req, res) {
     streetAddress,
     country,
     paid: false,
-    line_items,
+    line_items: payload,
   });
 
   const session = await stripe.checkout.sessions.create({
