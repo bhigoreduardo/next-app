@@ -1,0 +1,282 @@
+{
+  "categories": [
+    {
+      "_id": { "$oid": "647f5a00d9f9ac7b8bc0c871" },
+      "name": "Mobiles",
+      "properties": [],
+      "createdAt": { "$date": { "$numberLong": "1686067712302" } },
+      "updatedAt": { "$date": { "$numberLong": "1686067712302" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f5a4fd9f9ac7b8bc0c875" },
+      "name": "Notebooks",
+      "properties": [],
+      "createdAt": { "$date": { "$numberLong": "1686067791110" } },
+      "updatedAt": { "$date": { "$numberLong": "1686067791110" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f5aaed9f9ac7b8bc0c879" },
+      "name": "Headphones",
+      "properties": [],
+      "createdAt": { "$date": { "$numberLong": "1686067886445" } },
+      "updatedAt": { "$date": { "$numberLong": "1686067886445" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f5b53d9f9ac7b8bc0c87e" },
+      "name": "Iphones",
+      "parent": { "$oid": "647f5a00d9f9ac7b8bc0c871" },
+      "properties": [
+        {
+          "name": "color",
+          "values": ["silver", "gray", "rose", "gold", "black", "white"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c87f" }
+        },
+        {
+          "name": "storage",
+          "values": ["64", "128", "256"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c880" }
+        },
+        {
+          "name": "weight",
+          "values": ["120", "135"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c881" }
+        },
+        {
+          "name": "height",
+          "values": ["110", "125"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c882" }
+        },
+        {
+          "name": "width",
+          "values": ["55"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c883" }
+        },
+        {
+          "name": "tickness",
+          "values": ["10"],
+          "_id": { "$oid": "647f5b53d9f9ac7b8bc0c884" }
+        }
+      ],
+      "createdAt": { "$date": { "$numberLong": "1686068051614" } },
+      "updatedAt": { "$date": { "$numberLong": "1686068051614" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c89e" },
+      "name": "Samsung",
+      "parent": { "$oid": "647f5a00d9f9ac7b8bc0c871" },
+      "properties": [
+        {
+          "name": "color",
+          "values": ["gray", "white", "black", "gold"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c89f" }
+        },
+        {
+          "name": "storage",
+          "values": ["64", "128", "256", "512"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c8a0" }
+        },
+        {
+          "name": "weight",
+          "values": ["135"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c8a1" }
+        },
+        {
+          "name": "height",
+          "values": ["125"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c8a2" }
+        },
+        {
+          "name": "width",
+          "values": ["55"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c8a3" }
+        },
+        {
+          "name": "tickness",
+          "values": ["10"],
+          "_id": { "$oid": "647f5c1bd9f9ac7b8bc0c8a4" }
+        }
+      ],
+      "createdAt": { "$date": { "$numberLong": "1686068251054" } },
+      "updatedAt": { "$date": { "$numberLong": "1686068251054" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b4" },
+      "name": "Macbook",
+      "parent": { "$oid": "647f5a4fd9f9ac7b8bc0c875" },
+      "properties": [
+        {
+          "name": "color",
+          "values": ["gray", "white", "black"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b5" }
+        },
+        {
+          "name": "storage",
+          "values": ["1024", "2048"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b6" }
+        },
+        {
+          "name": "weight",
+          "values": ["1500"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b7" }
+        },
+        {
+          "name": "height",
+          "values": ["30"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b8" }
+        },
+        {
+          "name": "width",
+          "values": ["25"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8b9" }
+        },
+        {
+          "name": "length",
+          "values": ["25"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8ba" }
+        },
+        {
+          "name": "thickness",
+          "values": ["10"],
+          "_id": { "$oid": "647f5ce6d9f9ac7b8bc0c8bb" }
+        }
+      ],
+      "createdAt": { "$date": { "$numberLong": "1686068454579" } },
+      "updatedAt": { "$date": { "$numberLong": "1686068454579" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "647f6031d9f9ac7b8bc0cb5d" },
+      "name": "Boat Headphones",
+      "parent": { "$oid": "647f5aaed9f9ac7b8bc0c879" },
+      "properties": [
+        {
+          "name": "color",
+          "values": ["black", "red", "white", "gray", "gold", "silver"],
+          "_id": { "$oid": "647f603cd9f9ac7b8bc0cb7c" }
+        },
+        {
+          "name": "weight",
+          "values": ["20"],
+          "_id": { "$oid": "647f603cd9f9ac7b8bc0cb7d" }
+        },
+        {
+          "name": "length",
+          "values": ["100"],
+          "_id": { "$oid": "647f603cd9f9ac7b8bc0cb7e" }
+        },
+        {
+          "name": "sound",
+          "values": ["stereo"],
+          "_id": { "$oid": "647f603cd9f9ac7b8bc0cb7f" }
+        }
+      ],
+      "createdAt": { "$date": { "$numberLong": "1686069297715" } },
+      "updatedAt": { "$date": { "$numberLong": "1686069308345" } },
+      "__v": { "$numberInt": "0" }
+    }
+  ],
+  "products": [
+    {
+      "_id": { "$oid": "647fd3dcc1f0c886de68a10d" },
+      "title": "Iphone Pro 10 XLR White 128Gb",
+      "category": { "$oid": "647f5b53d9f9ac7b8bc0c87e" },
+      "description": "English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites till in their infancy. Various versions have evolved over the years, sometimes images.",
+      "price": { "$numberInt": "1997" },
+      "images": [
+        "1686098859023.png",
+        "1686098862524.png",
+        "1686098865850.webp"
+      ],
+      "properties": [
+        {
+          "name": "shipping",
+          "values": ["free"],
+          "_id": { "$oid": "6480b1b314776c4a5bfcbce8" }
+        },
+        {
+          "name": "cover",
+          "values": ["transparent"],
+          "_id": { "$oid": "6480b1b314776c4a5bfcbce9" }
+        },
+        {
+          "name": "acessories",
+          "values": ["phones", "usb data"],
+          "_id": { "$oid": "6480b1b314776c4a5bfcbcea" }
+        }
+      ],
+      "categoryProperties": {
+        "color": "white",
+        "storage": "128",
+        "weight": "135",
+        "width": "55",
+        "height": "110",
+        "tickness": "10"
+      },
+      "createdAt": { "$date": { "$numberLong": "1686098908777" } },
+      "updatedAt": { "$date": { "$numberLong": "1686155699902" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "64809eb4fb5c0686a271a3b3" },
+      "title": "Iphone Black X Pro Max 256Gb",
+      "category": { "$oid": "647f5b53d9f9ac7b8bc0c87e" },
+      "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "price": { "$numberInt": "1600" },
+      "images": ["1686150736383.png", "1686150731327.png"],
+      "properties": [
+        {
+          "name": "acessories",
+          "values": ["usb data", "phones wireless"],
+          "_id": { "$oid": "64809eb4fb5c0686a271a3b4" }
+        }
+      ],
+      "categoryProperties": {
+        "color": "black",
+        "storage": "256",
+        "weight": "135",
+        "height": "110",
+        "width": "55",
+        "tickness": "10"
+      },
+      "createdAt": { "$date": { "$numberLong": "1686150836745" } },
+      "updatedAt": { "$date": { "$numberLong": "1686150836745" } },
+      "__v": { "$numberInt": "0" }
+    },
+    {
+      "_id": { "$oid": "6480a29bfb5c0686a271a659" },
+      "title": "Macbook Pro 14 X Max Gray 2048Gb",
+      "category": { "$oid": "647f5ce6d9f9ac7b8bc0c8b4" },
+      "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you",
+      "price": { "$numberInt": "3599" },
+      "images": [
+        "1686151714520.webp",
+        "1686151718350.webp",
+        "1686151786065.png"
+      ],
+      "properties": [
+        {
+          "name": "acessories",
+          "values": ["battery", "cabes", "phones wireless"],
+          "_id": { "$oid": "6480a29bfb5c0686a271a65a" }
+        }
+      ],
+      "categoryProperties": {
+        "color": "gray",
+        "storage": "2048",
+        "weight": "1500",
+        "height": "30",
+        "width": "25",
+        "length": "25",
+        "thickness": "10"
+      },
+      "createdAt": { "$date": { "$numberLong": "1686151835743" } },
+      "updatedAt": { "$date": { "$numberLong": "1686151835743" } },
+      "__v": { "$numberInt": "0" }
+    }
+  ]
+}

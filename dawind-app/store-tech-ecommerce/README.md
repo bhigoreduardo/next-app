@@ -30,8 +30,8 @@
 
 ## :ok_man: Dependencies
 
-- Client Dependencies: `yarn add`
-- Api Dependencies: `yarn add`
+- Admin Dependencies: `yarn add @next-auth/mongodb-adapter axios mongodb mongoose next-auth react-sortablejs react-spinners react-sweetalert2 react-toastify sortablejs`
+- Web Dependencies: `yarn add axios mongoose react-toastify stripe styled-components`
 
 ## :triangular_flag_on_post: Environment Variables
 
@@ -43,7 +43,11 @@
 
 ### Web Variables
 
-- Description: `NEXT_PUBLIC_URL`
+- Mongo URL: `MONGODB_URI`
+- Api Url (http-server): `NEXT_PUBLIC_API_URL`
+- Next Url: `NEXT_PUBLIC_URL`
+- Stripe Key: `STRIPE_PK`
+- Stripe Secret: `STRIPE_SK`
 
 ## :page_facing_up: Docs
 
